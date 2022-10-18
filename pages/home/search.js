@@ -1,17 +1,23 @@
+import { renderMiniCard } from "./index.js"
+
 const baseUrl = `https://api.github.com/users`
 const myHeaders = {
     'Content-Type': 'application/json'
 }
 
-function search (){
+function search() {
+
+    const input = document.querySelector("#input")
 
     const buttonSearch = document.getElementById("button")
-    
 
-    buttonSearch.addEventListener("click", () => {
-        
-        window.location.href = "http://127.0.0.1:5500/pages/profile/index.html"
+    const buttonNotFound = document.querySelector(".user-not-found")
+
+    buttonSearch.addEventListener("click", async () => {
+
         buttonSearch.innerHTML = ""
+
+        window.location.href = "http://127.0.0.1:5500/pages/profile/index.html"
 
         const img = document.createElement("img")
         img.src = "../img/spinner.png"
@@ -20,56 +26,30 @@ function search (){
 
         buttonSearch.appendChild(img)
 
-        getApi(buttonSearch)
+        const apiComFilter = getApi1.filter((element) => element.login === input.value)
+
+        localStorage.setItem("user", JSON.stringify(apiComFilter))
+
+        console.log(apiComFilter)        
 
     })
 }
 
-function getApi (button) {
 
-    const user = fetch(`${baseUrl}`, {
+async function getApi() {
+
+    const user = await fetch(`${baseUrl}`, {
         method: 'GET',
         headers: myHeaders,
     })
-    .then(res => res.json())
-    .then(res => {
-        filterUsers(res)
-        console.log(res)
-        button.innerHTML = ""
-        button.innerText = "Ver perfil do github"
-    })
-    
+        .then(res => res.json())
+        .then(res => {
+
+            return res
+        })
     return user
 }
 
-
-function filterUsers(arr) {
-
-    const textNotFound = document.querySelector(".user-not-found")
-    
-    
-    arr.forEach(element => {
-        
-        const input = document.getElementById("user")
-        
-        input.addEventListener("input", event => {
-        
-            const inputValue = event.target.value.trim()
-    
-            const saveLocal = localStorage.getItem("user")
-    
-            if(inputValue === element.login && !saveLocal) {
-    
-                localStorage.setItem("user", JSON.stringify(element))
-            }
-            else {
-                textNotFound.innerText = "Usuário não encontrado"
-            }
-    
-        })
-        
-    });
-    
-}
+let getApi1 = await getApi()
 
 search()

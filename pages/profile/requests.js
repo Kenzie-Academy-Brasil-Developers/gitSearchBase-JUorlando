@@ -1,20 +1,5 @@
-const baseUrl = `https://api.github.com/users`
-const myHeaders = {
-  'Content-Type': 'application/json'
-}
+import { render } from "."
+import { renderRepos } from "./repository"
 
-function getAllUsers() {
-  fetch(`${baseUrl}`, {
-    method: 'GET',
-    headers: myHeaders
-  })
-  .then(resp => resp.json())
-  .then(resp => {
-    render(resp)
-    console.log(resp)
-    
-    return resp
-  })
-}
-
-getAllUsers()
+render()
+renderRepos()

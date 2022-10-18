@@ -1,3 +1,11 @@
+function getUserLocation(){
+    
+  return JSON.parse(localStorage.getItem("user")) || []
+  
+}
+
+console.log(getUserLocation())
+
 function render(arr) {
     const mainList = document.querySelector('.app')
   
@@ -8,8 +16,11 @@ function render(arr) {
       const card = renderCard(elt)
   
       mainList.appendChild(card)
+
     })
   }
+
+render(getUserLocation())
 
 function renderCard(elt){
 

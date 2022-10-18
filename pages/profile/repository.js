@@ -1,4 +1,8 @@
-function renderRepos(arr) {
+import { getUserLocation } from "./index.js"
+
+getUserLocation()
+
+export function renderRepos(arr) {
     const mainRepos = document.querySelector('.app')
   
     mainRepos.innerHTML = ''
@@ -42,5 +46,3 @@ function renderCardRepos (elt) {
 
     return tagSectionCards
 }
-
-console.log(renderCardRepos())
