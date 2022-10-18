@@ -1,4 +1,4 @@
-function getUserLocation(){
+export function getUserLocation(){
     
   return JSON.parse(localStorage.getItem("user")) || []
   
@@ -6,7 +6,7 @@ function getUserLocation(){
 
 console.log(getUserLocation())
 
-function render(arr) {
+export function render(arr) {
     const mainList = document.querySelector('.app')
   
     mainList.innerHTML = ''

@@ -14,6 +14,8 @@ export function renderRepos(arr) {
     })
   }
 
+renderRepos(getUserLocation())
+
 function renderCardRepos (elt) {
 
     const tagSectionCards = document.createElement("section")
