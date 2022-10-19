@@ -8,7 +8,6 @@ export function btnEvent (elt){
     const input = document.querySelector("#input")
     
     const buttonSearch = document.getElementById("button")
-    
 
     buttonSearch.addEventListener("click", () => {
 
@@ -25,12 +24,22 @@ export function btnEvent (elt){
 
 
         const userComFind = elt.find(element => element.login === input.value)
+        
+        
+        if(userComFind){
+            
+            localStorage.setItem("favorito", JSON.stringify(userComFind))
+            
+            localStorage.setItem("user", JSON.stringify(input.value))
+    
+            window.location.assign("./pages/profile/index.html")
 
-        localStorage.setItem("favorito", JSON.stringify(userComFind))
+        } else {
 
-        localStorage.setItem("user", JSON.stringify(input.value))
+            let btnNot = document.querySelector(".user-not-found")
+            btnNot.classList = "user-apear"
+        }
 
-        window.location.assign("./pages/profile/index.html")
 
         
     })
