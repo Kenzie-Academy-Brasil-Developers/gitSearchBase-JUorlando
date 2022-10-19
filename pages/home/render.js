@@ -1,30 +1,6 @@
-function getUserLocation(){
-    
-    return JSON.parse(localStorage.getItem("user")) || []
-    
-}
-
-getUserLocation()
-
-function passandoMap (arr){
-
-    arr.map(element => {
-        
-        const TagUl = document.querySelector(".ul-card-section-1")
-
-        TagUl.innerHTML = ""
-
-        let miniCard = renderMiniCard(element)
-
-        TagUl.appendChild(miniCard)
-
-        
-    });
-}
-
-passandoMap(getUserLocation())
-
 export function renderMiniCard (itens){
+
+    const TagUl = document.querySelector(".ul-card-section-1")
 
     let tagLi = document.createElement("li")
     let tagImg = document.createElement("img")
@@ -40,6 +16,5 @@ export function renderMiniCard (itens){
     tagAncora.innerText = "Achados recentes"
     
     tagLi.append(tagImg, tagAncora)
-
-    return tagLi
+    TagUl.append(tagLi)
 }
