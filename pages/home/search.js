@@ -52,4 +52,6 @@ async function getApi() {
 
 let getApi1 = await getApi()
 
+console.log(getApi1)
+
 search()
