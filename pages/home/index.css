@@ -42,13 +42,14 @@
 }
 
 .div-section-1{
-    width: 320px;
-    height: 44px;
+    width: 615px;
+    height: 85px;
     position: relative;
     right: 73px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .div-text{
@@ -56,8 +57,16 @@
 }
 
 .ul-card-section-1{
+    width: 135px;
+    height: 60px;
     list-style: none;
     padding-left: 10px;
+    display: flex;
+    justify-content: start;
+}
+
+.li-card-section-1{
+    width: 100px;
 }
 
 .img-section-1{
