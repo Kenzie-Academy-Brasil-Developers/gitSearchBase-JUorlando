@@ -4,9 +4,17 @@ import { favoriteAndRemove } from "./favorito.js"
 export function btnEvent (){
 
     const input = document.querySelector("#input")
+
     
     const buttonSearch = document.getElementById("button")
 
+    input.addEventListener("input", () => {
+
+        document.querySelector("#button").disabled = false
+
+    })
+
+    console.log(input)
     buttonSearch.addEventListener("click", () => {
 
         buttonSearch.innerHTML = ""
@@ -41,7 +49,7 @@ export function btnEvent (){
         
                     setTimeout(() => {
                         window.location.assign("./pages/profile/index.html")
-                    }, 4000)
+                    }, 500)
                 } else {
                     let btnNot = document.querySelector(".user-not-found")
                     btnNot.classList = "user-apear"
