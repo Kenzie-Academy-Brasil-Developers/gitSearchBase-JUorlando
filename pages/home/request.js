@@ -31,10 +31,3 @@ export async function btnSkin (button){
 
    return users
 }
-
-export async function getUsers () {
-
-   await fetch(`https://api.github.com/users`).then((res) => res.json()).then((res) => btnEvent(res))
-
-}
-

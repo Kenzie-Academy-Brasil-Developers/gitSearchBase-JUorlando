@@ -1,9 +1,6 @@
 import { btnSkin } from "./request.js"
-import { getUsers } from "./request.js"
 
-getUsers()
-
-export function btnEvent (elt){
+export function btnEvent (){
 
     const input = document.querySelector("#input")
     
@@ -21,27 +18,40 @@ export function btnEvent (elt){
         buttonSearch.appendChild(img)
 
         btnSkin(buttonSearch)
-
-
-        const userComFind = elt.find(element => element.login === input.value)
         
         
-        if(userComFind){
+        async function findSave() {
             
-            localStorage.setItem("favorito", JSON.stringify(userComFind))
-            
-            localStorage.setItem("user", JSON.stringify(input.value))
-    
-            window.location.assign("./pages/profile/index.html")
+            try {
+                
+                const request = await fetch(`https://api.github.com/users/${input.value}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                })
+                
+                if (request.ok) {
+                    const response = await request.json()
+                    
+                    localStorage.setItem("user", JSON.stringify(input.value))
 
-        } else {
-
-            let btnNot = document.querySelector(".user-not-found")
-            btnNot.classList = "user-apear"
+                    localStorage.setItem("favorito", JSON.stringify(response))
+        
+                    setTimeout(() => {
+                        window.location.assign("./pages/profile/index.html")
+                    }, 4000)
+                } else {
+                    let btnNot = document.querySelector(".user-not-found")
+                    btnNot.classList = "user-apear"
+                }
+        
+            } catch (err) {
+                let btnNot = document.querySelector(".user-not-found")
+                btnNot.classList = "user-apear"
+            }
         }
-
-
-        
+        console.log(findSave())
     })
     
 }
