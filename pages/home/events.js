@@ -1,4 +1,5 @@
 import { btnSkin } from "./request.js"
+import { favoriteAndRemove } from "./favorito.js"
 
 export function btnEvent (){
 
@@ -34,9 +35,9 @@ export function btnEvent (){
                 if (request.ok) {
                     const response = await request.json()
                     
-                    localStorage.setItem("user", JSON.stringify(input.value))
+                    localStorage.setItem("user", input.value)
 
-                    localStorage.setItem("favorito", JSON.stringify(response))
+                    favoriteAndRemove(response)
         
                     setTimeout(() => {
                         window.location.assign("./pages/profile/index.html")
